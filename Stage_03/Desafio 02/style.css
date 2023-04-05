@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+legend, h1, h2, .button {
+    font-family: 'Staatliches', cursive;
+}
+
+body, input, span, select, textarea {
+    font-family: 'Poppins', sans-serif;
+}
+
+body::before {
+    content: '';
+    height: 465px;
+    min-width: 100vw;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    background-color: #293241;    
+}
+
+body {
+    background-color: #BFD7E4;
+}
+
+.page {
+    width: 750px;
+    margin: auto;
+}
+
+header {
+    padding-top: 106px;
+    text-align: center;
+}
+
+header h1 {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 45px;
+    color: #FFF;
+}
+
+header p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFF;
+}
+
+header img {
+    margin: 20px auto 30px;
+}
+
+.title-form {
+    height: 133px;
+    background-color: #f67669;
+
+    border-radius: 20px 20px 0px 0px;
+}
+
+.title-form h1 {
+    padding: 50px 275px;
+
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: #FFF;
+}
+
+#evaluation-form {
+    background-color: #FFF;
+    border-radius: 0px 0px 20px 20px;
+
+    padding: 30px 64px 64px 64px;
+    margin-bottom: 390px;
+}
+
+fieldset {
+    border: none;
+}
+
+.fieldset-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-name-wrapper {
+    display: flex;
+    gap: 22px;
+}
+
+.input-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-wrapper label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #4E4958;
+
+    padding-bottom: 8px;
+}
+
+.input-wrapper label span {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #77767a;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    background-color: #FAFAFC;
+
+    height: 56px;
+
+    border: 1px solid #E6E6F0;
+    border-radius: 8px;
+}
+
+.input-wrapper select {
+    padding-left: 16px;
+
+    width: 48%;
+    font-size: 14px;
+    color: #4E4958;
+    
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%239C98A6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: 96% 50%;
+}
+
+.fieldset-wrapper legend {
+    padding: 36px 0px 8px;
+    text-align: center;
+    
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: #253B51;
+
+    border-bottom: 1px solid #E6E6F0;
+}
+
+#margin-top-feedback {
+    margin-top: 32px;
+}
+
+.input-wrapper textarea {
+    width: 100%;
+    height: 167px;
+
+    resize: none;
+
+    background-color: #FAFAFC;
+    border: 1px solid #E6E6F0;
+    border-radius: 8px;
+}
+
+.checkbox-wrapper {
+    position: relative;
+}
+
+.checkbox-wrapper label{
+    display: flex;
+    align-items: center;
+    
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #4E4958;
+
+    margin: 0;
+    gap: 16px;
+}
+
+.checkbox-wrapper input {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+}
+
+.checkbox-wrapper label::before{
+    content: '';
+    width: 24px;
+    height: 24px;
+    display: block;
+
+    background-color: #FAFAFC;
+    border: 1px solid #E6E6E6;
+    border-radius: 8px;
+}
+
+.checkbox-wrapper input:checked + label::before{ 
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='14' viewBox='0 0 18 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 11.17L1.83 7L0.410004 8.41L6 14L18 2L16.59 0.589996L6 11.17Z' fill='%2342D3FF'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.checkbox-wrapper input:focus + label::before{
+    outline: 2px solid black;
+}
+
+.date-position {
+    display: flex;
+    gap: 32px;
+}
+
+.hours-position {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    color: transparent;
+}
+
+input[type="date"]:focus::-webkit-datetime-edit {
+    color: #4E4958;
+    padding-left: 16px;
+}
+
+input:invalid {
+    border: 1px solid red;
+}
+
+.button {
+    height: 51px;
+    width: 100%;
+    margin-top: 63px;
+
+    background-color: #f67669;
+
+    border-radius: 8px;
+    border: none;
+
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #FFF;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #db6457;
+}
