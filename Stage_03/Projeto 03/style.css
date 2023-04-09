@@ -1,0 +1,252 @@
+/*Variáveis e cores hsl no css*/
+
+:root {
+    --ff-heading: 'Epilogue', sans-serif;
+    --ff-texting: 'Open sans', sans-serif;
+
+    --hue: 250;
+    --bg-primary: hsl(var(--hue), 22%, 20%);
+    --bg-span: hsl(var(--hue), 0%, 100%);
+    --fc-primary: hsl(var(--hue), 0%, 100%);
+    --fc-secondary: hsl(var(--hue), 50%, 80%);
+    --fc-span: hsla(250, 100%, 11%, 1);
+
+
+    font-size: 62.5%;
+    --fs-body: 1.6rem;
+    --fs-heading: clamp(4rem, 1rem + 5vw, 5.6rem);
+    --fs-heading-sm: clamp(3rem, 1rem + 3vw, 4rem);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--ff-heading);
+    color: var(--fc-primary);
+    background-color: var(--bg-primary);
+
+    text-align: center;
+}
+
+.page {
+    max-width: 33rem;
+    margin: 0 auto;
+}
+
+main {
+    display: grid;
+    gap: 3.2rem;
+
+    margin-bottom: 10rem;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+header {
+    margin: 10rem auto 8rem; 
+
+    /*Animações - keyframes*/
+    animation: topdown 1s 200ms forwards ease;
+
+    /* Propriedades configuradas
+    animation-name: topdown;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-delay: 200ms;
+    animation-timing-function: ease; */
+}
+
+header p {
+    color: var(--fc-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+
+    font-weight: 400;
+    font-size: var(--fs-body);
+    line-height: 3.2rem;
+
+    margin-bottom: 1.7rem;
+}
+
+header h1 {
+    font-weight: 800;
+    font-size: var(--fs-heading);
+    line-height: 4.8rem;
+}
+
+.card {
+    position: relative;
+}
+
+.card img {
+    height: 41.6rem;
+    object-fit: cover;
+
+    border-radius: 0.6rem;
+    
+    filter: brightness(0.6);
+
+    transition: transform 200ms 100ms;
+    /*
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-delay: 100ms;*/
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+.card h2 {
+    position: absolute;
+    bottom: 5.2rem;
+    left: 2.8rem;
+
+    font-weight: 800;
+    font-size: var(--fs-heading-sm);
+    line-height: 4.8rem;
+    color: var(--fc-primary);
+
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+.card span {
+    padding: 0.5rem 1.5rem;
+    background-color: var(--bg-span);
+    border-radius: 1.9rem;
+
+    font-weight: 400;
+    font-size: var(--fs-body);
+    line-height: 3.2rem;
+    color: var(--fc-span);
+
+    width: fit-content;
+}
+
+/* Animações dos cards - keyframes */
+
+.card:nth-child(1) {
+    animation: leftright 2s 1s backwards ease;
+}
+
+.card:nth-child(2) {
+    animation: rightleft 2s 1s backwards ease;
+}
+
+.card:nth-child(3) {
+    animation: leftright 2s 1s backwards ease;
+}
+
+.card:nth-child(4) {
+    animation: rightleft 2s 1s backwards ease;
+}
+
+/*Animações com keyframes*/
+
+@keyframes topdown {
+    0% {
+        opacity: 0;
+        transform: translateY(-4rem);
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes downtop {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes leftright {
+    0% {
+        opacity: 0;
+        transform: translateX(-30rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes rightleft {
+    0% {
+        opacity: 0;
+        transform: translateX(30rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*Responsividade - media queries*/
+
+@media (min-width: 700px) {
+    .page {
+        max-width: 65rem;
+    }
+}
+
+@media (min-width: 1000px) {
+    .page {
+        max-width: 95rem;
+    }
+
+    main {
+        display: grid;
+        grid-template-areas: "A B B"
+                             "C C D";
+    }
+
+    .card:nth-child(1) {
+        grid-area: A;
+    }
+    .card:nth-child(2) {
+        grid-area: B;
+    }
+    .card:nth-child(3) {
+        grid-area: C;
+    }
+    .card:nth-child(4) {
+        grid-area: D;
+    }
+}
+
+@media (min-width: 1400px) {
+    .page {
+        max-width: 135rem;
+    }
+}
+
+@media (min-width: 2500px) {
+    .page {
+        max-width: 240rem;
+    }
+}
