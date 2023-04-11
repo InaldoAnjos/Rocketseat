@@ -119,8 +119,9 @@ h2 + img {
 }
 
 .card img:hover {
-    transition: 400ms;
-    transform: scale(1.1);
+    transition: 500ms;
+    transform: scale(1.005);
+    border-radius: 0;
     cursor: pointer;
 }
 
