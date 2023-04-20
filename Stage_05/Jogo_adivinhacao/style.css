@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    font-size: 62.5%;
+    
+    --fs-heading: 2.4rem;
+    --fs-texting: 1.6rem;
+    --fs-button:  1.6rem;
+    --fs-input:   1.6rem;
+
+    --fc-texting:  #34355B;
+
+    --bg-box-main: #FFF;
+    --bg-input:    #DCE2E9;
+    --bg-button:   #7879F1;
+
+    --ff-body: 'Montserrat Alternates', sans-serif;
+}   
+
+body {
+    font-family: var(--ff-body);
+    height: 100vh;
+    background: linear-gradient(287.56deg, #C2E9FB 0%, #A1C4FD 100%);
+
+    display: grid;
+    place-items: center;
+}
+
+
+main {
+    background-color: var(--bg-box-main);
+    border-radius: 0.6rem;
+    box-shadow: 0rem 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+
+    padding: 4.8rem 6.4rem 6.4rem;
+    margin-top: -12rem;
+    width: min(42.8rem, 90%);
+    
+    text-align: center;
+}
+
+/* Main Screen*/
+
+.hide {
+    display: none;
+}
+
+main h1 {
+    font-size: var(--fs-heading);
+    color: var(--fc-texting);
+}
+
+main p {
+    font-size: var(--fs-texting);
+    color: var(--fc-texting);
+
+    margin: 1.6rem 0 4.8rem;
+}
+
+main input {
+    font-size: var(--fs-input);
+    color: var(--fc-texting);
+
+    height: 5.3rem;
+    width: 5.3rem;
+
+    padding: 1.6rem;
+
+    background-color: var(--bg-input);
+    border: none;
+    border-radius: 0.4rem 0 0 0.4rem;
+}
+
+/*Esconder as setinhas do input type number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    appearance: none;
+}
+
+main button {
+    font-size: var(--fs-button);
+    color: #FFF;
+    font-weight: 700;
+    line-height: 2.1rem;
+
+    height: 5.3rem;
+    width: 8.2rem;
+
+    background-color: var(--bg-button);
+    border: none;
+    border-radius: 0 0.4rem 0.4rem 0;
+
+    cursor: pointer;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+main button:hover {
+    transform: scale(1.01);
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Secondary Screen*/
+
+.secondary-screen h2 {
+    font-size: var(--fs-heading);
+    font-weight: 400;
+
+    margin-bottom: 3.3rem;
+}
+
+.secondary-screen button {
+    width: 60%;
+    padding: 1.6rem;
+    border-radius: 0.4rem;
+}
+
