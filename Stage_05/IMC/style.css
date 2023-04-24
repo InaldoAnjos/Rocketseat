@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    font-size:        62.5%;
+
+    --ff-body:        'Roboto', sans-serif;
+
+    --fs-heading:     3.2rem;
+    --fs-modal:       2.4rem;
+    --fs-label:       1.4rem;
+    --fs-placeholder: 1.6rem;
+    --fs-button:      1.6rem;
+    --fs-alert-error: 1.6rem;
+    
+    --bg-body:        #040924;
+    --bg-box:         #FFFFFF;
+    --bg-button:      #02799D;
+    --bg-bar-error:   #F03E3E;
+    --bg-input:       #DCE2E9;
+    
+    --fc-heading:     #0C3440;
+    --fc-label:       #00453A;
+    --fc-input:       #212529;
+    --fc-placeholder: #49505780;
+    --fc-button:      #FFFFFF;
+    --fc-error:       #FFFFFF;  
+
+    --ol-input:       #027990;
+    --bd-input:       #4950574D;
+}
+
+body {
+    position: relative;
+    background-color: var(--bg-body);
+}
+
+body, input, label, button {
+    font-family: var(--ff-body);
+}
+
+/* Alert Error */
+.alert-error.open {
+    visibility: visible;
+    opacity: 1;
+
+    animation: slide-alert-error 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.alert-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-bar-error);
+
+    font-size: var(--fs-alert-error);
+    font-weight: 400;
+    line-height: 2rem;
+    color: var(--fc-error);
+
+    text-align: center;
+    padding: 0.7rem 0;
+
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Card Main*/
+
+.container {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.card {
+    width: 42.8rem;
+    padding: 4.8rem 6.4rem 6.4rem;
+    background: var(--bg-box);
+
+    margin-top: -12rem;
+
+    box-shadow: 0rem 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.6rem;
+}
+
+form {
+    max-width: 30rem;
+}
+
+form h1 {
+    font-size: var(--fs-heading);
+    color: var(--fc-heading);
+    font-weight: 700;
+    line-height: 4rem;
+}
+
+form label {
+    font-size: var(--fs-label);
+    color: var(--fc-label);
+    font-weight: 400;
+    line-height: 1.8rem;
+}
+
+form input {
+    font-size: var(--fs-placeholder);
+    color: var(--fc-input);
+    font-weight: 400;
+    line-height: 2rem;
+
+    padding: 1.6rem;
+    border: 0.1rem solid var(--bd-input);
+    border-radius: 0.4rem;
+    background-color: var(--bg-input);
+}
+
+form input:focus {
+    outline: 0.15rem solid var(--ol-input);
+}
+
+form ::placeholder {
+    font-size: var(--fs-placeholder);
+    font-weight: 400;
+    line-height: 2rem;
+    color: var(--fc-placeholder);
+}
+
+form button {
+    width: 100%;
+
+    font-size: var(--fs-button);
+    font-weight: 700;
+    line-height: 2rem;
+    color: var(--fc-button);
+
+    background-color: var(--bg-button);
+    border: none;
+    padding: 1.6rem;
+    border-radius: 0.4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    cursor: pointer;
+    transition: 400ms;
+}
+
+form button:hover {
+    transform: scale(1.01);
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 3.2rem auto;
+}
+
+.input-wrapper input + label {
+    margin-top: 1.6rem;
+}
+
+.input-wrapper label + input {
+    margin-top: 0.8rem;
+}
+
+/* Modal */
+
+.modal-wrapper {
+    position: absolute;
+    /* 
+    Essas propriedades equivalem ao 'inset: 0'
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    */
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+
+    display: grid;
+    /* 
+    place-items: center; 
+    */
+    place-content: center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-wrapper.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    position: relative;
+    max-width: 36.3rem;
+}
+
+.modal h2 {
+    text-align: center;
+    font-size: var(--fs-heading);
+    color: var(--fc-heading);
+    font-weight: 700;
+    line-height: 4rem;
+}
+
+.modal button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    background-color: var(--bg-box);
+    border: none;
+
+    cursor: pointer;
+}
+
+.modal button:hover {
+    animation: buttonClose 1.5s ease 0s 1 normal forwards;
+}
+
+
+/* Keyframes */
+
+/* Botão de Fechar*/
+@keyframes buttonClose {
+	0% {
+        transform-origin: center;
+        transform: rotate3d(0, 0, 1, -360deg);
+    }
+    100% {
+        transform-origin: center;
+        transform: none;
+    }
+}
+
+/* Alert Error */
+
+@keyframes slide-alert-error {
+    0% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+  }
+
