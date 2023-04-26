@@ -1,26 +1,13 @@
+import { Modal } from './modules/modal.js';
+import { notANumber } from './modules/validations.js';
+import { AlertError } from './modules/alert-error.js';
+import { calculateIMC } from './modules/utils.js';
+
 // Variables
 
 const form            = document.querySelector('form');
 const inputWeight     = document.querySelector('#weight');
 const inputHeight     = document.querySelector('#height');
-
-// Variáveis antes de entrar no Modal
-// const modalWrapper    = document.querySelector('.modal-wrapper');
-// const modalMessage    = document.querySelector('.modal h2 span');
-// const modalbtnClose   = document.querySelector('.modal button'); 
-
-const Modal = {
-    wrapper : document.querySelector('.modal-wrapper'),
-    message : document.querySelector('.modal h2 span'),
-    btnClose: document.querySelector('.modal button'),
-    
-    open() {
-        Modal.wrapper.classList.add('open');
-    },
-    close() {
-        Modal.wrapper.classList.remove('open');
-    }
-}
 
 // Events
 
@@ -33,11 +20,21 @@ form.onsubmit = (event) => {
     const weight  = inputWeight.value;
     const height  = inputHeight.value;
     
-    const result  = calculaIMC(weight, height);
-    const message = `Seu IMC é de ${result}`;
+    const weightOrHeightIsNotANumber = notANumber(weight) || notANumber(height);
     
-    exibeMessage(message);
+    if(weightOrHeightIsNotANumber) {
+        AlertError.open();
+        inputWeight.oninput = () => AlertError.close();
+        inputHeight.oninput = () => AlertError.close();
+        return;
+    }else {
+        AlertError.close();
+
+        const result  = calculateIMC(weight, height);        
+        exibeMessage(result);
+    }
 }
+
 
 /* 2 - Função anônima 
 form.onsubmit = function() {
@@ -53,25 +50,14 @@ function handleSubmit() {
 }
 */
 
-Modal.btnClose.onclick = () => {
-    Modal.close();
-    clearInput();
-}
-
-// Functions
-
-function calculaIMC(weight, height) {
-    return ((weight / (height/100) ** 2).toFixed(2))
-}
-
-function exibeMessage(message) {
-    Modal.message.innerText = message;
-    Modal.open();
-}
-
 function clearInput() {
     inputHeight.value = "";
     inputWeight.value = "";
 }
 
-
+function exibeMessage(result) {
+    const message = `Seu IMC é de ${result}`;
+    Modal.message.innerText = message;
+    Modal.open();
+    clearInput();
+}

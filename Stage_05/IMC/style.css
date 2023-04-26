@@ -12,7 +12,7 @@
     --ff-body:        'Roboto', sans-serif;
 
     --fs-heading:     3.2rem;
-    --fs-modal:       2.4rem;
+    --fs-modal:       2.0rem;
     --fs-label:       1.4rem;
     --fs-placeholder: 1.6rem;
     --fs-button:      1.6rem;
@@ -49,7 +49,14 @@ body, input, label, button {
     visibility: visible;
     opacity: 1;
 
-    animation: slide-alert-error 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-alert-error-open 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.alert-error.close {
+    visibility: visible;
+    opacity: 1;
+
+    animation: slide-alert-error-close 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .alert-error {
@@ -95,6 +102,7 @@ form {
 }
 
 form h1 {
+    text-align: center;
     font-size: var(--fs-heading);
     color: var(--fc-heading);
     font-weight: 700;
@@ -244,12 +252,21 @@ form button:hover {
 
 /* Alert Error */
 
-@keyframes slide-alert-error {
+@keyframes slide-alert-error-open {
     0% {
         transform: translateY(-50px);
     }
     100% {
         transform: translateY(0px);
     }
-  }
+}
+
+@keyframes slide-alert-error-close {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-50px);
+    }
+}
 
