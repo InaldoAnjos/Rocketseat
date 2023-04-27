@@ -32,6 +32,7 @@
     --fc-error:       #FFFFFF;  
 
     --ol-input:       #027990;
+    --ol-input-error: #F30E3E;  
     --bd-input:       #4950574D;
 }
 
@@ -130,7 +131,13 @@ form input {
 
 form input:focus {
     outline: 0.15rem solid var(--ol-input);
+
 }
+form input.error{
+    outline: 0.175rem solid var(--ol-input-error);
+}
+
+
 
 form ::placeholder {
     font-size: var(--fs-placeholder);
