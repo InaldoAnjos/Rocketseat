@@ -39,15 +39,20 @@ main {
     margin-top: -12rem;
 }
 
-.container {
+.container.open {
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    opacity: 1;
+    opacity: 1 ;
     visibility: visible;
+}
+
+.container.close {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .timer {
@@ -60,7 +65,7 @@ main span{
     font-size: clamp(4rem, 4rem + 10vw, var(--fs-timer));
     font-weight: 600;
     color: var(--fc-timer);
-
+    
     margin-bottom: 1.6rem;
 }
 
@@ -84,7 +89,7 @@ button svg {
     height: clamp(4rem, 6rem + 5vh, 10.8rem);
     border-radius: 9999px;
     background-color: var(--bg-buttons);
-
+    
     display: flex;
     gap: 3.2rem;
     align-items: center;
@@ -109,17 +114,23 @@ button {
     bottom: 3.2rem;
 }
 
-.modal-wrapper {
+.modal-wrapper.close {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
     place-content: center;
+
     opacity: 0;
     visibility: hidden;
 }
 
-.modal {
+.modal-wrapper.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal.close {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -132,11 +143,19 @@ button {
     
     width: clamp(30rem, 20rem + 20vw, 50rem);
     height: clamp(20rem, 10rem + 15vh, 40rem);
-
+    
     padding: 2rem 3.2rem;
-
+    
     box-shadow: 0rem 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
     border-radius: 0.6rem;
+    
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal.open {
+    opacity: 1;
+    visibility: visible;
 }
 
 .modal h1 {

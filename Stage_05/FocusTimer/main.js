@@ -41,5 +41,10 @@ btnStop.addEventListener('click', function() {
 });
 
 btnSet.addEventListener('click', function() {
-    minutes = prompt('Quantos minutos?');
+    document.querySelector('.container').classList.remove('open');
+    document.querySelector('.container').classList.add('close');
+    document.querySelector('modal-wrapper').classList.remove('close');
+    document.querySelector('modal-wrapper').classList.add('open');
+    document.querySelector('.modal').classList.remove('close');
+    document.querySelector('.modal').classList.add('open');
 });
