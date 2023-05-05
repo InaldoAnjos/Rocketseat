@@ -1,11 +1,16 @@
 // Variáveis
 
-const btnPlay     = document.querySelector('.play');
-const btnPause    = document.querySelector('.pause');
-const btnSet      = document.querySelector('.set');
-const btnStop     = document.querySelector('.stop');
-const btnSoundOn  = document.querySelector('.sound-on');
-const btnSoundOff = document.querySelector('.sound-off');
+const btnPlay      = document.querySelector('.play');
+const btnPause     = document.querySelector('.pause');
+const btnSet       = document.querySelector('.set');
+const btnStop      = document.querySelector('.stop');
+const btnSoundOn   = document.querySelector('.sound-on');
+const btnSoundOff  = document.querySelector('.sound-off');
+const btnClose     = document.querySelector('.button-close');
+
+const form         = document.querySelector('form');
+const inputMinutes = document.querySelector('#minutes');
+const inputSeconds = document.querySelector('#seconds');
 
 let   minutes;
 
@@ -41,10 +46,13 @@ btnStop.addEventListener('click', function() {
 });
 
 btnSet.addEventListener('click', function() {
-    document.querySelector('.container').classList.remove('open');
     document.querySelector('.container').classList.add('close');
-    document.querySelector('modal-wrapper').classList.remove('close');
-    document.querySelector('modal-wrapper').classList.add('open');
-    document.querySelector('.modal').classList.remove('close');
+    document.querySelector('.modal-wrapper').classList.add('open');
     document.querySelector('.modal').classList.add('open');
+});
+
+btnClose.addEventListener('click', function() {
+    document.querySelector('.container').classList.remove('close');
+    document.querySelector('.modal-wrapper').classList.remove('open');
+    document.querySelector('.modal').classList.remove('open');
 });

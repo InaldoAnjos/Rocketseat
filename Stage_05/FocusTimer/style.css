@@ -13,7 +13,7 @@
 
     --base-color:        194;
     --primary-color:     hsl(var(--base-color), 100%, 63%);
-    --color-placeholder: hsl(var(--base-color), 30%, 70%);
+    --color-placeholder: hsla(var(--base-color), 30%, 70%, 0.35);
     --bg-modal:          hsla(var(--base-color), 100%, 63%, 0.13);
     --bg-buttons:        hsla(var(--base-color), 100%, 63%, 0.13);
 
@@ -30,7 +30,7 @@ body {
     background: var(--bg-color);
 }
 
-body, h1, span, input {
+body, h1, span, input, button {
     font-family: var(--ff-timer);
 }
 
@@ -39,12 +39,10 @@ main {
     margin-top: -12rem;
 }
 
-.container.open {
+.container {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
 
     opacity: 1 ;
     visibility: visible;
@@ -114,7 +112,7 @@ button {
     bottom: 3.2rem;
 }
 
-.modal-wrapper.close {
+.modal-wrapper {
     position: absolute;
     inset: 0;
     display: grid;
@@ -130,7 +128,7 @@ button {
     visibility: visible;
 }
 
-.modal.close {
+.modal {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -201,30 +199,37 @@ input::-webkit-inner-spin-button {
     outline: 2px solid var(--primary-color);
 }
 
-.modal button {
+.modal .button-close {
     position: absolute;
     top: 2rem;
     right: 1rem;
 }
 
-.modal button:hover {
-    animation: buttonClose 1.5s ease 0s 1 normal forwards;
+.button-close:hover svg path{
+    stroke: rgba(189, 53, 29, 0.863);
+    transition: 400ms;
+}
+
+#setTimer {
+    width: 100%;
+    padding: 1rem;
+
+    border-radius: 1rem;
+    margin-top: 1.5rem;
+    background-color: var(--bg-buttons);
+    border: 1px solid #ffffff50;
+
+    color: #FFFFFF;
+    font-size: 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#setTimer:hover {
+    color: var(--bg-buttons-hover);
+    background-color: #FFFFFF;
+
+    transition: 600ms;
 }
 
 /* Keyframes */
-
-/* Botão de Fechar*/
-@keyframes buttonClose {
-    0% {
-        -webkit-transform: rotate3d(1, 1, 0, 0deg);
-                transform: rotate3d(1, 1, 0, 0deg);
-      }
-      50% {
-        -webkit-transform: rotate3d(1, 1, 0, -180deg);
-                transform: rotate3d(1, 1, 0, -180deg);
-      }
-      100% {
-        -webkit-transform: rotate3d(1, 1, 0, -360deg);
-                transform: rotate3d(1, 1, 0, -360deg);
-      }
-}
