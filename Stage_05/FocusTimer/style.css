@@ -17,11 +17,14 @@
     --bg-modal:          hsla(var(--base-color), 100%, 63%, 0.13);
     --bg-buttons:        hsla(var(--base-color), 100%, 63%, 0.13);
     --bg-buttons-hover:  hsla(var(--base-color), 30%, 30%);
+    --bg-bar-error:      #F03E3E;
 
+    --fc-error: #FFFFFF;
     --fc-timer: #FFFFFF;
-    --fs-timer: 8rem;
-    --ff-timer: 'Roboto', sans-serif;
+    --fs-timer:   8rem;
+    --ff-timer:  'Roboto', sans-serif;
 
+    --fs-alert-error:  1.6rem;
     --fs-setTimer:     3.5rem;
     --fs-setTimerSpan: 6rem;
 }
@@ -33,6 +36,40 @@ body {
 
 body, h1, span, input, button {
     font-family: var(--ff-timer);
+}
+
+/* Alert Error */
+.alert-error.open {
+    visibility: visible;
+    opacity: 1;
+
+    animation: slide-alert-error-open 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.alert-error.close {
+    visibility: visible;
+    opacity: 1;
+
+    animation: slide-alert-error-close 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.alert-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-bar-error);
+
+    font-size: var(--fs-alert-error);
+    font-weight: 600;
+    line-height: 2rem;
+    color: var(--fc-error);
+
+    text-align: center;
+    padding: 0.7rem 0;
+
+    visibility: hidden;
+    opacity: 0;
 }
 
 main {
@@ -203,8 +240,8 @@ input::-webkit-inner-spin-button {
 
 .modal .button-close {
     position: absolute;
-    top: 2rem;
-    right: 1rem;
+    top: clamp(0.7rem, 1.4rem, 2rem);
+    right: clamp(0.3rem, 0.3rem, 1rem);
 }
 
 .button-close:hover svg path{
@@ -235,3 +272,23 @@ input::-webkit-inner-spin-button {
 }
 
 /* Keyframes */
+
+/* Alert Error */
+
+@keyframes slide-alert-error-open {
+    0% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes slide-alert-error-close {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-50px);
+    }
+}

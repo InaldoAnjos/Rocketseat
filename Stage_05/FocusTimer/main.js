@@ -1,3 +1,5 @@
+import { AlertError } from "./modules/alert-error.js";
+
 // Variáveis
 
 const btnPlay        = document.querySelector('.play');
@@ -29,9 +31,14 @@ form.onsubmit = (event) => {
     minutes = inputMinutes.value;
     seconds = inputSeconds.value;
     
-    displayMinutes.textContent = minutes;
-    displaySeconds.textContent = seconds;
+    displayMinutes.textContent = String(minutes).padStart(2, '0');
+    displaySeconds.textContent = String(seconds).padStart(2, '0');
     
+    // Validando
+    if((inputMinutes.value == "" && inputSeconds.value == "") || (inputMinutes.value == 0 && inputSeconds.value == 0)) {
+        AlertError.open();  
+    }
+
     // Verificando se o input veio vazio
     if(inputMinutes.value == ""){
         displayMinutes.textContent = String(0).padStart(2, '0');
@@ -51,6 +58,10 @@ function countdown() {
                 seconds = 60;
                 
                 if (minutes <= 0 && seconds == 60) {
+                    btnPlay.classList.remove('hide');
+                    btnPause.classList.add('hide');
+                    btnStop.classList.add('hide');
+                    btnSet.classList.remove('hide');
                     return;
                 }
                 
@@ -64,12 +75,14 @@ function countdown() {
 }
 
 btnPlay.addEventListener('click', function() {
-    btnPlay.classList.add('hide');
-    btnPause.classList.remove('hide');
-    btnSet.classList.add('hide');
-    btnStop.classList.remove('hide');
-
-    countdown();
+    if (validation()) {
+        btnPlay.classList.add('hide');
+        btnPause.classList.remove('hide');
+        btnSet.classList.add('hide');
+        btnStop.classList.remove('hide');
+    
+        countdown();
+    };
 });
 
 btnPause.addEventListener('click', function() {
@@ -107,9 +120,19 @@ btnClose.addEventListener('click', function() {
 });
 
 btnOK.addEventListener('click', function() {
-    document.querySelector('.container').classList.remove('close');
-    document.querySelector('.modal-wrapper').classList.remove('open');
-    document.querySelector('.modal').classList.remove('open');
+        document.querySelector('.container').classList.remove('close');
+        document.querySelector('.modal-wrapper').classList.remove('open');
+        document.querySelector('.modal').classList.remove('open');
 });
+
+function validation() {
+    if((displayMinutes.textContent == 0 && displaySeconds.textContent == 0 ) || (displayMinutes.textContent == "" && displaySeconds.textContent == "")) {
+        AlertError.open();
+        return;
+    }else{
+        AlertError.close();
+        countdown();
+    }    
+}
 
 
