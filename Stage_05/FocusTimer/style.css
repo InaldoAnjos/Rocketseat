@@ -16,6 +16,7 @@
     --color-placeholder: hsla(var(--base-color), 30%, 70%, 0.35);
     --bg-modal:          hsla(var(--base-color), 100%, 63%, 0.13);
     --bg-buttons:        hsla(var(--base-color), 100%, 63%, 0.13);
+    --bg-buttons-hover:  hsla(var(--base-color), 30%, 30%);
 
     --fc-timer: #FFFFFF;
     --fs-timer: 8rem;
@@ -113,6 +114,7 @@ button {
 }
 
 .modal-wrapper {
+    margin-top: -12rem;
     position: absolute;
     inset: 0;
     display: grid;
@@ -177,7 +179,7 @@ button {
     text-align: center;
     font-size: var(--fs-setTimerSpan);
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--bg-buttons-hover);
 
     border-radius: 1rem;
     border: none;
@@ -229,7 +231,7 @@ input::-webkit-inner-spin-button {
     color: var(--bg-buttons-hover);
     background-color: #FFFFFF;
 
-    transition: 600ms;
+    transition: 400ms;
 }
 
 /* Keyframes */
