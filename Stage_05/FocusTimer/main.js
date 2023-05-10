@@ -17,10 +17,67 @@ const inputSeconds   = document.getElementById('seconds');
 
 let   minutes;
 let   seconds;
+let   idTimeout;
 
 const displayMinutes = document.querySelector('.minutes'); 
 const displaySeconds = document.querySelector('.seconds'); 
 
+// Functions
+
+function resetControls() {
+    btnPlay.classList.remove('hide');
+    btnPause.classList.add('hide');
+    btnStop.classList.add('hide');
+    btnSet.classList.remove('hide');
+}
+
+function resetTimer() {
+    updateTimerDisplay(0,0);
+}
+
+function timerPlay() {
+    btnPlay.classList.add('hide');
+    btnPause.classList.remove('hide');
+    btnSet.classList.add('hide');
+    btnStop.classList.remove('hide');
+}
+
+function updateTimerDisplay(minutes, seconds) {
+    displayMinutes.textContent = String(minutes).padStart(2, '0');
+    displaySeconds.textContent = String(seconds).padStart(2, '0');
+}
+
+function validation() {
+    if((displayMinutes.textContent == 0 && displaySeconds.textContent == 0 ) || (displayMinutes.textContent == "" && displaySeconds.textContent == "")) {
+        AlertError.open();
+        return;
+    }else{
+        timerPlay();
+        countdown();
+    }    
+}
+
+function countdown() {
+    idTimeout = setTimeout(function() {
+        let seconds = Number(displaySeconds.textContent); 
+        let minutes = Number(displayMinutes.textContent);
+        
+        
+        if(seconds <= 0){
+            seconds = 60;
+            
+            if (minutes <= 0 && seconds == 60) {
+                resetControls();
+                return;
+            }
+            --minutes;
+        }
+        
+        updateTimerDisplay(minutes, String(--seconds));
+
+        countdown();
+    }, 1000)
+}
 
 // Events - DOM (Event-driven)
 
@@ -31,8 +88,7 @@ form.onsubmit = (event) => {
     minutes = inputMinutes.value;
     seconds = inputSeconds.value;
     
-    displayMinutes.textContent = String(minutes).padStart(2, '0');
-    displaySeconds.textContent = String(seconds).padStart(2, '0');
+    updateTimerDisplay(minutes, seconds);
     
     // Validando
     if((inputMinutes.value == "" && inputSeconds.value == "") || (inputMinutes.value == 0 && inputSeconds.value == 0)) {
@@ -41,53 +97,21 @@ form.onsubmit = (event) => {
 
     // Verificando se o input veio vazio
     if(inputMinutes.value == ""){
-        displayMinutes.textContent = String(0).padStart(2, '0');
+        updateTimerDisplay(0, seconds);
     }
     if(inputSeconds.value == ""){
-        displaySeconds.textContent = String(0).padStart(2, '0');
+        updateTimerDisplay(minutes, 0);
     }
-}
-
-function countdown() {
-        setTimeout(function() {
-            let seconds = Number(displaySeconds.textContent); 
-            let minutes = Number(displayMinutes.textContent);
-            
-            
-            if(seconds <= 0){
-                seconds = 60;
-                
-                if (minutes <= 0 && seconds == 60) {
-                    btnPlay.classList.remove('hide');
-                    btnPause.classList.add('hide');
-                    btnStop.classList.add('hide');
-                    btnSet.classList.remove('hide');
-                    return;
-                }
-                
-                displayMinutes.textContent = String(minutes - 1).padStart(2, '0');
-            }
-            
-            displaySeconds.textContent = String(seconds - 1).padStart(2,'0');
-
-            countdown();
-        }, 1000)
 }
 
 btnPlay.addEventListener('click', function() {
-    if (validation()) {
-        btnPlay.classList.add('hide');
-        btnPause.classList.remove('hide');
-        btnSet.classList.add('hide');
-        btnStop.classList.remove('hide');
-    
-        countdown();
-    };
+        validation();    
 });
 
 btnPause.addEventListener('click', function() {
     btnPause.classList.add('hide');
     btnPlay.classList.remove('hide');
+    clearTimeout(idTimeout);
 });
 
 btnSoundOn.addEventListener('click', function() {
@@ -101,10 +125,8 @@ btnSoundOff.addEventListener('click', function() {
 });
 
 btnStop.addEventListener('click', function() {
-    btnPlay.classList.remove('hide');
-    btnPause.classList.add('hide');
-    btnStop.classList.add('hide');
-    btnSet.classList.remove('hide');
+    resetControls();
+    resetTimer();
 });
 
 btnSet.addEventListener('click', function() {
@@ -124,15 +146,5 @@ btnOK.addEventListener('click', function() {
         document.querySelector('.modal-wrapper').classList.remove('open');
         document.querySelector('.modal').classList.remove('open');
 });
-
-function validation() {
-    if((displayMinutes.textContent == 0 && displaySeconds.textContent == 0 ) || (displayMinutes.textContent == "" && displaySeconds.textContent == "")) {
-        AlertError.open();
-        return;
-    }else{
-        AlertError.close();
-        countdown();
-    }    
-}
 
 
