@@ -178,8 +178,8 @@ button {
     color: var(--fc-timer);
     background: var(--bg-modal);
     
-    width: clamp(30rem, 20rem + 20vw, 50rem);
-    height: clamp(20rem, 10rem + 15vh, 40rem);
+    width: clamp(30rem, 20rem + 15vw, 40rem);
+    height: clamp(20rem, 20rem + 15vh, 40rem);
     
     padding: 2rem 3.2rem;
     
@@ -277,7 +277,7 @@ input::-webkit-inner-spin-button {
 
 @keyframes slide-alert-error-open {
     0% {
-        transform: translateY(-50px);
+        transform: translateY(-70px);
     }
     100% {
         transform: translateY(0px);
@@ -289,6 +289,6 @@ input::-webkit-inner-spin-button {
         transform: translateY(0px);
     }
     100% {
-        transform: translateY(-50px);
+        transform: translateY(-70px);
     }
 }

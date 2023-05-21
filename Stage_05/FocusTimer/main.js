@@ -1,4 +1,8 @@
 import { AlertError } from "./modules/alert-error.js";
+import { timerFactory } from "./modules/timer.js"
+import { controlsFactory } from "./modules/controls.js";
+import { validationsFactory } from "./modules/validations.js";
+
 
 // Variáveis
 
@@ -22,62 +26,23 @@ let   idTimeout;
 const displayMinutes = document.querySelector('.minutes'); 
 const displaySeconds = document.querySelector('.seconds'); 
 
-// Functions
+const dependenciesValidations = validationsFactory({
+    displayMinutes,
+    displaySeconds,
+});
 
-function resetControls() {
-    btnPlay.classList.remove('hide');
-    btnPause.classList.add('hide');
-    btnStop.classList.add('hide');
-    btnSet.classList.remove('hide');
-}
+const dependenciesControls = controlsFactory({
+    btnPlay,
+    btnPause,
+    btnSet,
+    btnStop
+});
 
-function resetTimer() {
-    updateTimerDisplay(0,0);
-}
-
-function timerPlay() {
-    btnPlay.classList.add('hide');
-    btnPause.classList.remove('hide');
-    btnSet.classList.add('hide');
-    btnStop.classList.remove('hide');
-}
-
-function updateTimerDisplay(minutes, seconds) {
-    displayMinutes.textContent = String(minutes).padStart(2, '0');
-    displaySeconds.textContent = String(seconds).padStart(2, '0');
-}
-
-function validation() {
-    if((displayMinutes.textContent == 0 && displaySeconds.textContent == 0 ) || (displayMinutes.textContent == "" && displaySeconds.textContent == "")) {
-        AlertError.open();
-        return;
-    }else{
-        timerPlay();
-        countdown();
-    }    
-}
-
-function countdown() {
-    idTimeout = setTimeout(function() {
-        let seconds = Number(displaySeconds.textContent); 
-        let minutes = Number(displayMinutes.textContent);
-        
-        
-        if(seconds <= 0){
-            seconds = 60;
-            
-            if (minutes <= 0 && seconds == 60) {
-                resetControls();
-                return;
-            }
-            --minutes;
-        }
-        
-        updateTimerDisplay(minutes, String(--seconds));
-
-        countdown();
-    }, 1000)
-}
+const dependenciesTimer = timerFactory({
+    displayMinutes,
+    displaySeconds,
+    idTimeout,
+});
 
 // Events - DOM (Event-driven)
 
@@ -88,29 +53,30 @@ form.onsubmit = (event) => {
     minutes = inputMinutes.value;
     seconds = inputSeconds.value;
     
-    updateTimerDisplay(minutes, seconds);
+    dependenciesTimer.updateTimerDisplay(minutes, seconds);
     
     // Validando
     if((inputMinutes.value == "" && inputSeconds.value == "") || (inputMinutes.value == 0 && inputSeconds.value == 0)) {
         AlertError.open();  
     }
-
+    else {
+        AlertError.close();
+    }
     // Verificando se o input veio vazio
     if(inputMinutes.value == ""){
-        updateTimerDisplay(0, seconds);
+        dependenciesTimer.updateTimerDisplay(0, seconds);
     }
     if(inputSeconds.value == ""){
-        updateTimerDisplay(minutes, 0);
+        dependenciesTimer.updateTimerDisplay(minutes, 0);
     }
 }
 
 btnPlay.addEventListener('click', function() {
-        validation();    
+    dependenciesValidations.validation();    
 });
 
 btnPause.addEventListener('click', function() {
-    btnPause.classList.add('hide');
-    btnPlay.classList.remove('hide');
+    dependenciesControls.pause();
     clearTimeout(idTimeout);
 });
 
@@ -125,14 +91,12 @@ btnSoundOff.addEventListener('click', function() {
 });
 
 btnStop.addEventListener('click', function() {
-    resetControls();
-    resetTimer();
+    dependenciesControls.resetControls();
+    dependenciesTimer.resetTimer();
 });
 
 btnSet.addEventListener('click', function() {
-    document.querySelector('.container').classList.add('close');
-    document.querySelector('.modal-wrapper').classList.add('open');
-    document.querySelector('.modal').classList.add('open');
+    dependenciesControls.set();
 });
 
 btnClose.addEventListener('click', function() {
@@ -142,9 +106,10 @@ btnClose.addEventListener('click', function() {
 });
 
 btnOK.addEventListener('click', function() {
-        document.querySelector('.container').classList.remove('close');
-        document.querySelector('.modal-wrapper').classList.remove('open');
-        document.querySelector('.modal').classList.remove('open');
+    dependenciesValidations.validation(); 
+    document.querySelector('.container').classList.remove('close');
+    document.querySelector('.modal-wrapper').classList.remove('open');
+    document.querySelector('.modal').classList.remove('open');
 });
 
 
