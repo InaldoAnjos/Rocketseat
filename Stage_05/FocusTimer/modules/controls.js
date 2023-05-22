@@ -30,10 +30,24 @@ export function controlsFactory({
         btnSet.classList.remove('hide');
     }
 
+    function confirmtime() {
+        document.querySelector('.container').classList.remove('close');
+        document.querySelector('.modal-wrapper').classList.remove('open');
+        document.querySelector('.modal').classList.remove('open');
+    }
+
+    function close() {
+        document.querySelector('.container').classList.remove('close');
+        document.querySelector('.modal-wrapper').classList.remove('open');
+        document.querySelector('.modal').classList.remove('open');
+    }
+
     return {
         timerPlay,
         pause,
         set,
         resetControls,
+        confirmtime,
+        close
     }
 }

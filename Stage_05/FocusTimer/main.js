@@ -6,29 +6,32 @@ import { validationsFactory } from "./modules/validations.js";
 
 // Variáveis
 
-const btnPlay        = document.querySelector('.play');
-const btnPause       = document.querySelector('.pause');
-const btnSet         = document.querySelector('.set');
-const btnStop        = document.querySelector('.stop');
-const btnSoundOn     = document.querySelector('.sound-on');
-const btnSoundOff    = document.querySelector('.sound-off');
-const btnClose       = document.querySelector('.button-close');
-const btnOK          = document.getElementById('setTimer');
+const btnPlay         = document.querySelector('.play');
+const btnPause        = document.querySelector('.pause');
+const btnSet          = document.querySelector('.set');
+const btnStop         = document.querySelector('.stop');
+const btnSoundOn      = document.querySelector('.sound-on');
+const btnSoundOff     = document.querySelector('.sound-off');
+const btnClose        = document.querySelector('.button-close');
+const btnOK           = document.getElementById('setTimer');
 
-const form           = document.querySelector('form');
-const inputMinutes   = document.getElementById('minutes');
-const inputSeconds   = document.getElementById('seconds');
+const form            = document.querySelector('form');
+const inputMinutes    = document.getElementById('minutes');
+const inputSeconds    = document.getElementById('seconds');
 
 let   minutes;
 let   seconds;
-let   idTimeout;
 
-const displayMinutes = document.querySelector('.minutes'); 
-const displaySeconds = document.querySelector('.seconds'); 
+const displayMinutes  = document.querySelector('.minutes'); 
+const displaySeconds  = document.querySelector('.seconds'); 
 
 const dependenciesValidations = validationsFactory({
     displayMinutes,
     displaySeconds,
+    btnPlay,
+    btnPause,
+    btnSet,
+    btnStop
 });
 
 const dependenciesControls = controlsFactory({
@@ -41,7 +44,10 @@ const dependenciesControls = controlsFactory({
 const dependenciesTimer = timerFactory({
     displayMinutes,
     displaySeconds,
-    idTimeout,
+    btnPlay,
+    btnPause,
+    btnSet,
+    btnStop,
 });
 
 // Events - DOM (Event-driven)
@@ -72,12 +78,12 @@ form.onsubmit = (event) => {
 }
 
 btnPlay.addEventListener('click', function() {
-    dependenciesValidations.validation();    
+    dependenciesValidations.validation();
 });
 
 btnPause.addEventListener('click', function() {
     dependenciesControls.pause();
-    clearTimeout(idTimeout);
+    dependenciesTimer.hold();
 });
 
 btnSoundOn.addEventListener('click', function() {
@@ -100,16 +106,12 @@ btnSet.addEventListener('click', function() {
 });
 
 btnClose.addEventListener('click', function() {
-    document.querySelector('.container').classList.remove('close');
-    document.querySelector('.modal-wrapper').classList.remove('open');
-    document.querySelector('.modal').classList.remove('open');
+    dependenciesControls.close();
 });
 
 btnOK.addEventListener('click', function() {
     dependenciesValidations.validation(); 
-    document.querySelector('.container').classList.remove('close');
-    document.querySelector('.modal-wrapper').classList.remove('open');
-    document.querySelector('.modal').classList.remove('open');
+    dependenciesControls.confirmtime();    
 });
 
 
