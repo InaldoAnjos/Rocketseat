@@ -1,4 +1,7 @@
 import { controlsFactory } from "./controls.js";
+import Sound from "./sounds.js";
+
+const sound = Sound();
 
 const dependenciesControls = controlsFactory({
     btnPlay  : document.querySelector('.play'),
@@ -28,12 +31,13 @@ export function timerFactory({
         idTimeout = setTimeout(function() {
             let seconds = Number(displaySeconds.textContent); 
             let minutes = Number(displayMinutes.textContent);
-
+            
         if(seconds <= 0){
             seconds = 60;
-            
             if (minutes <= 0 && seconds == 60) {
                 dependenciesControls.resetControls();
+                sound.timeEnd();
+                
                 return;
             }
             --minutes;

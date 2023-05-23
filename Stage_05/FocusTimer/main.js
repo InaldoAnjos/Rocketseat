@@ -1,29 +1,27 @@
 import { AlertError } from "./modules/alert-error.js";
 import { timerFactory } from "./modules/timer.js"
 import { controlsFactory } from "./modules/controls.js";
-import { validationsFactory } from "./modules/validations.js";
-
-
-// Variáveis
-
-const btnPlay         = document.querySelector('.play');
-const btnPause        = document.querySelector('.pause');
-const btnSet          = document.querySelector('.set');
-const btnStop         = document.querySelector('.stop');
-const btnSoundOn      = document.querySelector('.sound-on');
-const btnSoundOff     = document.querySelector('.sound-off');
-const btnClose        = document.querySelector('.button-close');
-const btnOK           = document.getElementById('setTimer');
-
-const form            = document.querySelector('form');
-const inputMinutes    = document.getElementById('minutes');
-const inputSeconds    = document.getElementById('seconds');
+import { validationsFactory } from "./modules/validations.js"; 
+import Sound from "./modules/sounds.js";
+import { btnPlay,
+         btnPause,
+         btnSet,
+         btnStop,
+         btnSoundOn,
+         btnSoundOff,
+         btnClose,
+         btnOK,
+         form,
+         inputMinutes,
+         inputSeconds,
+         displayMinutes,
+         displaySeconds
+        } from "./modules/elements.js";
 
 let   minutes;
 let   seconds;
 
-const displayMinutes  = document.querySelector('.minutes'); 
-const displaySeconds  = document.querySelector('.seconds'); 
+const sound = Sound();
 
 const dependenciesValidations = validationsFactory({
     displayMinutes,
@@ -58,10 +56,10 @@ form.onsubmit = (event) => {
     
     minutes = inputMinutes.value;
     seconds = inputSeconds.value;
-    
+
     dependenciesTimer.updateTimerDisplay(minutes, seconds);
     
-    // Validando
+    //Validando
     if((inputMinutes.value == "" && inputSeconds.value == "") || (inputMinutes.value == 0 && inputSeconds.value == 0)) {
         AlertError.open();  
     }
@@ -79,26 +77,31 @@ form.onsubmit = (event) => {
 
 btnPlay.addEventListener('click', function() {
     dependenciesValidations.validation();
+    sound.pressButton();
 });
 
 btnPause.addEventListener('click', function() {
     dependenciesControls.pause();
     dependenciesTimer.hold();
+    sound.pressButton();
 });
 
 btnSoundOn.addEventListener('click', function() {
     btnSoundOn.classList.add('hide');
     btnSoundOff.classList.remove('hide');
+    sound.bgAudioPause();
 });
 
 btnSoundOff.addEventListener('click', function() {
     btnSoundOff.classList.add('hide');
     btnSoundOn.classList.remove('hide');
+    sound.bgAudioStart();
 });
 
 btnStop.addEventListener('click', function() {
     dependenciesControls.resetControls();
     dependenciesTimer.resetTimer();
+    sound.pressButton();
 });
 
 btnSet.addEventListener('click', function() {
@@ -110,7 +113,7 @@ btnClose.addEventListener('click', function() {
 });
 
 btnOK.addEventListener('click', function() {
-    dependenciesValidations.validation(); 
+    dependenciesValidations.validation();
     dependenciesControls.confirmtime();    
 });
 
