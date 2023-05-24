@@ -16,7 +16,9 @@ const inputSeconds    = document.getElementById('seconds');
 const displayMinutes  = document.querySelector('.minutes'); 
 const displaySeconds  = document.querySelector('.seconds');
 
-export {
+const elementAlert    = document.querySelector('.alert-error');
+
+export const elements = {
       btnPlay,
       btnPause,
       btnSet,
@@ -29,5 +31,6 @@ export {
       inputMinutes,
       inputSeconds,
       displayMinutes,
-      displaySeconds
+      displaySeconds,
+      elementAlert
 }

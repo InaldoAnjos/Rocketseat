@@ -1,11 +1,18 @@
-export const AlertError = {
-        element: document.querySelector('.alert-error'),
-        open() {
-            AlertError.element.classList.remove('close');
-            AlertError.element.classList.add('open');
-        },
-        close() {
-            AlertError.element.classList.remove('open');
-            AlertError.element.classList.add('close');
+export function AlertError({
+    elementAlert,
+})  {
+        function open() {
+            elementAlert.classList.remove('close');
+            elementAlert.classList.add('open');
         }
+        
+        function close() {
+            elementAlert.classList.remove('open');
+            elementAlert.classList.add('close');
+        }
+
+    return {
+        open,
+        close
+    }
 }

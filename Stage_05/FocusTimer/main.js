@@ -1,120 +1,90 @@
+import { elements } from "./modules/elements.js";
 import { AlertError } from "./modules/alert-error.js";
-import { timerFactory } from "./modules/timer.js"
+import { timerFactory } from "./modules/timer.js";
 import { controlsFactory } from "./modules/controls.js";
-import { validationsFactory } from "./modules/validations.js"; 
-import Sound from "./modules/sounds.js";
-import { btnPlay,
-         btnPause,
-         btnSet,
-         btnStop,
-         btnSoundOn,
-         btnSoundOff,
-         btnClose,
-         btnOK,
-         form,
-         inputMinutes,
-         inputSeconds,
-         displayMinutes,
-         displaySeconds
-        } from "./modules/elements.js";
+import { validationsFactory } from "./modules/validations.js";
+import { Sound } from "./modules/sounds.js";
+import { Events } from "./modules/events.js";
 
-let   minutes;
-let   seconds;
+const {
+  btnPlay,
+  btnPause,
+  btnSet,
+  btnStop,
+  btnSoundOn,
+  btnSoundOff,
+  btnClose,
+  btnOK,
+  form,
+  inputMinutes,
+  inputSeconds,
+  displayMinutes,
+  displaySeconds,
+  elementAlert,
+} = elements;
+
+const dependenciesControls = controlsFactory({
+  btnPlay,
+  btnPause,
+  btnSet,
+  btnStop,
+});
+
+const dependenciesTimer = timerFactory({
+  displayMinutes,
+  displaySeconds,
+  resetControls: dependenciesControls.resetControls,
+});
 
 const sound = Sound();
+
+const dependenciesAlertError = AlertError({
+    elementAlert
+})
 
 const dependenciesValidations = validationsFactory({
     displayMinutes,
     displaySeconds,
-    btnPlay,
-    btnPause,
-    btnSet,
-    btnStop
+    dependenciesControls,
+    dependenciesTimer,
+    dependenciesAlertError
 });
 
-const dependenciesControls = controlsFactory({
-    btnPlay,
-    btnPause,
-    btnSet,
-    btnStop
+Events({
+    dependenciesValidations,
+    sound,
+    dependenciesControls,
+    dependenciesTimer
 });
 
-const dependenciesTimer = timerFactory({
-    displayMinutes,
-    displaySeconds,
-    btnPlay,
-    btnPause,
-    btnSet,
-    btnStop,
-});
+let minutes;
+let seconds;
 
 // Events - DOM (Event-driven)
 
 form.onsubmit = (event) => {
-    event.preventDefault(); // Evite o padrão do evento 
-    // (Nesse caso o evento padrão do submit seria enviar o form e recarregar a página!)
-    
-    minutes = inputMinutes.value;
-    seconds = inputSeconds.value;
+  event.preventDefault(); // Evite o padrão do evento
+  // (Nesse caso o evento padrão do submit seria enviar o form e recarregar a página!)
 
-    dependenciesTimer.updateTimerDisplay(minutes, seconds);
-    
-    //Validando
-    if((inputMinutes.value == "" && inputSeconds.value == "") || (inputMinutes.value == 0 && inputSeconds.value == 0)) {
-        AlertError.open();  
-    }
-    else {
-        AlertError.close();
-    }
-    // Verificando se o input veio vazio
-    if(inputMinutes.value == ""){
-        dependenciesTimer.updateTimerDisplay(0, seconds);
-    }
-    if(inputSeconds.value == ""){
-        dependenciesTimer.updateTimerDisplay(minutes, 0);
-    }
-}
+  minutes = inputMinutes.value;
+  seconds = inputSeconds.value;
 
-btnPlay.addEventListener('click', function() {
-    dependenciesValidations.validation();
-    sound.pressButton();
-});
+  dependenciesTimer.updateTimerDisplay(minutes, seconds);
 
-btnPause.addEventListener('click', function() {
-    dependenciesControls.pause();
-    dependenciesTimer.hold();
-    sound.pressButton();
-});
-
-btnSoundOn.addEventListener('click', function() {
-    btnSoundOn.classList.add('hide');
-    btnSoundOff.classList.remove('hide');
-    sound.bgAudioPause();
-});
-
-btnSoundOff.addEventListener('click', function() {
-    btnSoundOff.classList.add('hide');
-    btnSoundOn.classList.remove('hide');
-    sound.bgAudioStart();
-});
-
-btnStop.addEventListener('click', function() {
-    dependenciesControls.resetControls();
-    dependenciesTimer.resetTimer();
-    sound.pressButton();
-});
-
-btnSet.addEventListener('click', function() {
-    dependenciesControls.set();
-});
-
-btnClose.addEventListener('click', function() {
-    dependenciesControls.close();
-});
-
-btnOK.addEventListener('click', function() {
-    dependenciesValidations.validation();
-    dependenciesControls.confirmtime();    
-});
-
-
+  //Validando
+  if (
+    (inputMinutes.value == "" && inputSeconds.value == "") ||
+    (inputMinutes.value == 0 && inputSeconds.value == 0)
+  ) {
+    elementAlert.open;
+  } else {
+    elementAlert.close;
+  }
+  // Verificando se o input veio vazio
+  if (inputMinutes.value == "") {
+    dependenciesTimer.updateTimerDisplay(0, seconds);
+  }
+  if (inputSeconds.value == "") {
+    dependenciesTimer.updateTimerDisplay(minutes, 0);
+  }
+};

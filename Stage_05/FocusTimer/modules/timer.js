@@ -1,14 +1,4 @@
-import { controlsFactory } from "./controls.js";
-import Sound from "./sounds.js";
-
-const sound = Sound();
-
-const dependenciesControls = controlsFactory({
-    btnPlay  : document.querySelector('.play'),
-    btnPause : document.querySelector('.pause'),
-    btnSet   : document.querySelector('.set'),
-    btnStop  : document.querySelector('.stop'),
-});
+import { Sound } from "./sounds.js";
 
 let idTimeout = null;
 
@@ -16,10 +6,7 @@ export function timerFactory({
     /* Dependencias das funções desse arquivo (timer.js) */
     displayMinutes,
     displaySeconds,
-    btnPlay,
-    btnPause,
-    btnSet,
-    btnStop,
+    resetControls,
 }) {
 
     function updateTimerDisplay(minutes, seconds) {
@@ -35,8 +22,8 @@ export function timerFactory({
         if(seconds <= 0){
             seconds = 60;
             if (minutes <= 0 && seconds == 60) {
-                dependenciesControls.resetControls();
-                sound.timeEnd();
+                resetControls();
+                Sound().timeEnd();
                 
                 return;
             }
