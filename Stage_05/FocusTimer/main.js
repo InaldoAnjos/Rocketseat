@@ -23,6 +23,11 @@ const {
   elementAlert,
 } = elements;
 
+let minutes;
+let seconds;
+
+const sound = Sound();
+
 const dependenciesControls = controlsFactory({
   btnPlay,
   btnPause,
@@ -34,9 +39,8 @@ const dependenciesTimer = timerFactory({
   displayMinutes,
   displaySeconds,
   resetControls: dependenciesControls.resetControls,
+  sound
 });
-
-const sound = Sound();
 
 const dependenciesAlertError = AlertError({
     elementAlert
@@ -54,11 +58,10 @@ Events({
     dependenciesValidations,
     sound,
     dependenciesControls,
-    dependenciesTimer
+    dependenciesTimer,
+    inputMinutes, 
+    inputSeconds
 });
-
-let minutes;
-let seconds;
 
 // Events - DOM (Event-driven)
 
@@ -76,9 +79,9 @@ form.onsubmit = (event) => {
     (inputMinutes.value == "" && inputSeconds.value == "") ||
     (inputMinutes.value == 0 && inputSeconds.value == 0)
   ) {
-    elementAlert.open;
+    dependenciesAlertError.open();
   } else {
-    elementAlert.close;
+    dependenciesAlertError.close();
   }
   // Verificando se o input veio vazio
   if (inputMinutes.value == "") {

@@ -1,5 +1,3 @@
-import { Sound } from "./sounds.js";
-
 let idTimeout = null;
 
 export function timerFactory({
@@ -7,6 +5,7 @@ export function timerFactory({
     displayMinutes,
     displaySeconds,
     resetControls,
+    sound
 }) {
 
     function updateTimerDisplay(minutes, seconds) {
@@ -23,7 +22,8 @@ export function timerFactory({
             seconds = 60;
             if (minutes <= 0 && seconds == 60) {
                 resetControls();
-                Sound().timeEnd();
+                sound.timeEnd();
+                sound.bgAudioPause();
                 
                 return;
             }
@@ -39,6 +39,7 @@ export function timerFactory({
     function resetTimer() {
         updateTimerDisplay(0,0);
         clearTimeout(idTimeout);
+        sound.bgAudioPause();
     }
 
     function hold() {
