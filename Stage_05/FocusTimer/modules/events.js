@@ -16,16 +16,10 @@ export function Events({
     sound,
     dependenciesControls,
     dependenciesTimer,
-    inputMinutes, 
-    inputSeconds
 }){
     btnPlay.addEventListener('click', function() {
         dependenciesValidations.validation();
         sound.pressButton();
-        console.log(inputMinutes.value);
-        if(inputMinutes.value && inputSeconds.value != 0){
-            sound.bgAudioStart();
-        }
     });
     
     btnPause.addEventListener('click', function() {

@@ -3,7 +3,8 @@ export function validationsFactory({
     displaySeconds,
     dependenciesControls,
     dependenciesTimer,
-    dependenciesAlertError
+    dependenciesAlertError,
+    sound
 }){
     function validation() {
         if((displayMinutes.textContent == 0 && displaySeconds.textContent == 0 ) || 
@@ -14,6 +15,7 @@ export function validationsFactory({
             dependenciesAlertError.close();
             dependenciesControls.timerPlay();
             dependenciesTimer.countdown();
+            sound.bgAudioStart();
         }    
     }
 
