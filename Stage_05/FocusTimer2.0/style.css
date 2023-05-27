@@ -115,3 +115,12 @@ main {
 .fire.Active   svg path {
   fill: #FFF;
 }
+
+/* Media Query */
+
+@media screen and (max-width: 850px){
+  main {
+    flex-direction: column;
+    gap: 5rem;
+  }
+}
