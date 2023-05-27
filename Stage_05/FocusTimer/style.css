@@ -32,6 +32,7 @@
 body {
     position: relative;
     background: var(--bg-color);
+    height: 100vh;
 }
 
 body, h1, span, input, button {

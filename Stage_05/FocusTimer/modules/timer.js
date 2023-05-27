@@ -14,7 +14,7 @@ export function timerFactory({
     }
     
     function countdown() {
-        idTimeout = setTimeout(function() {
+        idTimeout = setTimeout(() => {
             let seconds = Number(displaySeconds.textContent); 
             let minutes = Number(displayMinutes.textContent);
             

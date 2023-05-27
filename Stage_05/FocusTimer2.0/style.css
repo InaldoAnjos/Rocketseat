@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --ff-timer: 'Roboto', sans-serif;
+  
+  --fs-timer:  12.6rem;
+  --fs-legend: 2rem;
+
+  --fc-timer:    #323238;
+  --fc-legend:   #98989e;
+  --bg-card-off: #E1E1E6;
+  --bg-card-on:  #02799D;
+
+  --bg-card-off-hover: #d4d4d9;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 19.2rem;
+}
+
+.timer-container {
+  grid-area: 'timer';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4.8rem;
+}
+
+.timer {
+  font-family: var(--ff-timer);
+  font-size: var(--fs-timer);
+  font-weight: 500;
+  line-height: 15rem;
+
+  color: var(--fc-timer);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.legend {
+  height: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 7rem;
+  font-size: var(--fs-legend);
+  color: var(--fc-legend);
+  font-weight: 300;
+}
+
+.buttons-timer {
+  display: flex;
+  gap: 4rem;
+}
+
+.buttons-timer button {
+  background-color: transparent;
+  border: none;
+}
+
+.buttons-timer button:hover {
+  cursor: pointer;
+}
+
+.theme-container {
+  width: 30.8rem;
+  height: 33.6rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 3.2rem;
+  grid-row-gap: 3.2rem;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 13.8rem;
+  height: 15.2rem;
+  background-color: var(--bg-card-off);
+
+  border-radius: 2.4rem;
+  cursor: pointer;
+}
+
+.Active {
+  background-color: var(--bg-card-on);
+}
+
+.forest.Active svg path,
+.rain.Active   svg path,
+.market.Active svg path,
+.fire.Active   svg path {
+  fill: #FFF;
+}
+
+/* Media Query */
+
+@media screen and (max-width: 850px){
+  main {
+    flex-direction: column;
+    gap: 5rem;
+  }
+}

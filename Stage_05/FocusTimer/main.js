@@ -51,7 +51,8 @@ const dependenciesValidations = validationsFactory({
     displaySeconds,
     dependenciesControls,
     dependenciesTimer,
-    dependenciesAlertError
+    dependenciesAlertError,
+    sound
 });
 
 Events({
