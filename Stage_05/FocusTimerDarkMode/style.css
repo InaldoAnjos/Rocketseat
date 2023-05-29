@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+.dark-mode:root {
+    font-size:       62.5%;
+
+    --ff-timer: 'Roboto', sans-serif;
+
+    --fs-timer:      12.6rem;
+    --fs-legend:        2rem;
+
+    --fc-timer:     #FFFFFF;
+    --fc-legend:    #a6a6ac;
+    
+    --bg-card-on:   #0A3442;
+    --bg-card-off:  #29292E;
+    
+    --ic-color:     #C4C4CC;
+    --bg-color:     #121214;
+    
+    --bt-svg-color: #C4C4CC;
+}
+
+.light-mode:root {
+    font-size:       62.5%;
+
+    --ff-timer: 'Roboto', sans-serif;
+
+    --fc-timer:    #323238;
+    --fc-legend:   #75757a;
+    
+    --fs-timer:      12.6rem;
+    --fs-legend:        2rem;
+
+    --bg-card-on:  #02799D;
+    --bg-card-off: #E1E1E6;
+    
+
+    --ic-color:    #FFFFFF;
+    --bg-color:    #FFFFFF;
+
+    --bt-svg-color:#323238;
+}
+
+body {
+    font-family: var(--ff-timer);
+    width: 100%;
+}
+
+.mode {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.theme {
+    background-color: var(--bg-color);
+    display: grid;
+    grid-template-areas: "time theme";
+    place-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+
+.timer-container {
+    width: 32.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.clock {
+    color: var(--fc-timer);
+}
+
+.clock span {
+    font-size: var(--fs-timer);
+    font-weight: 500;
+    line-height: 4rem;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    
+    color: var(--fc-legend);
+}
+
+.legend span{
+    font-size: var(--fs-legend);
+    font-weight: 400;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 4rem;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+button svg path {
+    fill: var(--bt-svg-color);
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 3.2rem;
+    grid-row-gap: 3.2rem;
+}
+
+.card {
+    width: 13.8rem;
+    height: 15.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.2rem;
+    background-color: var(--bg-card-off);
+    border-radius: 2.4rem;
+    cursor: pointer;
+}
+
+/* Input Styles */
+input[type="range"] {
+    appearance: none;
+    cursor: pointer;
+    width: 9rem;
+}
+  
+/* Removes Default Focus */
+input[type="range"]:focus {
+    outline: none;
+}
+  
+/* Slider Track */
+.input input[type="range"]::-webkit-slider-runnable-track {
+    background-color: var(--fc-timer);
+    border-radius: 0.5rem;
+    height: 0.4rem;
+}
+
+/* Slider Thumb */
+.input input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    margin-top: -0.4rem; /* Centers thumb on the track */
+    background-color: var(--fc-timer);
+    border-radius: 0.6rem;
+    height: 1.2rem;
+    width: 1.2rem;
+}
