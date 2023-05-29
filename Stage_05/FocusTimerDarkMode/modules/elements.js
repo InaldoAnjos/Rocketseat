@@ -25,11 +25,10 @@ const cardMarket  = cards[2];
 const cardFire    = cards[3];
 
 // Inputs
-const inputs      = document.querySelectorAll('.input');
-const inputForest = inputs[0];
-const inputRain   = inputs[1];
-const inputMarket = inputs[2];
-const inputFire   = inputs[3];
+var inputForest = document.querySelector('input');
+const inputRain   = document.querySelector('input #rain');
+const inputMarket = document.querySelector('input #market');
+const inputFire   = document.querySelector('input #fire');
 
 export const elements = {
     tagHTML,

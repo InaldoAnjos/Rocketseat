@@ -21,10 +21,18 @@ export function Sound() {
         fireAudio.loop = true;
     }
 
+    function stopSound() {
+        forestAudio.pause();
+        rainAudio.pause();
+        marketAudio.pause();
+        fireAudio.pause();
+    }
+
     return {
         pressForest,
         pressRain,
         pressMarket,
-        pressFire
+        pressFire,
+        stopSound   
     }
 }

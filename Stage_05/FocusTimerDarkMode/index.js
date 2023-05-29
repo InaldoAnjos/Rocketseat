@@ -23,6 +23,10 @@ const {
 
 const sound = Sound();
 
+console.log(inputForest.value);
+
+// Change mode
+
 lightTheme.addEventListener('click', function(){
     tagHTML.classList.remove('light-mode');
     tagHTML.classList.add('dark-mode');
@@ -36,3 +40,33 @@ darkTheme.addEventListener('click', function(){
     darkTheme.classList.add('hide');
     lightTheme.classList.remove('hide');
 })
+
+// Sound
+
+cardForest.addEventListener('click', function(){
+    sound.stopSound();
+    sound.pressForest();
+})
+
+cardRain.addEventListener('click', function(){
+    sound.stopSound();
+    sound.pressRain();
+})
+
+cardMarket.addEventListener('click', function(){
+    sound.stopSound();
+    sound.pressMarket();
+})
+
+cardFire.addEventListener('click', function(){
+    sound.stopSound();
+    sound.pressFire();
+})
+
+btnStop.addEventListener('click', function(){
+    sound.stopSound();
+})
+
+// inputForest.addEventListener('mousemove', function(){
+
+// })
