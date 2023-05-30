@@ -2,10 +2,10 @@
 Stage 05
 
 <p align="center">
-    <img src="./github/preview.png" alt="Demonstração do projeto DarkMode" width="100%" />
+    <img src=".github/preview.png" alt="Demonstração do projeto DarkMode" width="100%" />
 </p>
 <p align="center">
-    <img src="./github/preview2.png" alt="Demonstração do projeto LightMode" width="100%" /> 
+    <img src=".github/preview2.png" alt="Demonstração do projeto LightMode" width="100%" /> 
 </p>
 
 ## 🖥💻 Projeto
