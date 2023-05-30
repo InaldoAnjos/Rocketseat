@@ -21,16 +21,19 @@ const {
     inputRain,
     inputMarket,
     inputFire,
+    idTimeout
 } = elements;
 
 const sound = Sound();
 
-Events({
+const timer = Timer({
+    idTimeout,
+    displayMinutes,
+    displaySeconds,
     sound
 });
 
-const timer = Timer({
-    displayMinutes,
-    displaySeconds,
+Events({
+    timer,
     sound
 });

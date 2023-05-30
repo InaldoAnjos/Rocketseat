@@ -30,6 +30,9 @@ const inputRain   = document.querySelector('#rain');
 const inputMarket = document.querySelector('#market');
 const inputFire   = document.querySelector('#fire');
 
+// Variável
+let idTimeout;
+
 export const elements = {
     tagHTML,
     lightTheme,
@@ -48,4 +51,5 @@ export const elements = {
     inputRain,
     inputMarket,
     inputFire,
+    idTimeout
 }

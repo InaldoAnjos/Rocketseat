@@ -29,6 +29,7 @@ export function Sound() {
 
     function stopSound() {
         currentMusic.pause();
+        currentMusic.volume = 0.5;
     }
 
     function setVolumeToHalf(audio, audioVolumeControl) {
@@ -39,8 +40,6 @@ export function Sound() {
     function setVolume(audio, audioVolumeControl) {
         audio.volume = audioVolumeControl.value
     }
-
-
 
     return {
         pressForest,

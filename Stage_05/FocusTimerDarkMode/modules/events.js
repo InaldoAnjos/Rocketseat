@@ -1,5 +1,4 @@
 import { elements } from "./elements.js"; 
-import { Timer } from "./timer.js";
 
 const {
     tagHTML,
@@ -19,15 +18,12 @@ const {
     inputRain,
     inputMarket,
     inputFire,
-} = elements;
-
-const timer = Timer({
-    displayMinutes,
-    displaySeconds,
-})
+    idTimeout
+} = elements;                                                                                       
 
 export function Events({
-    sound
+    timer,
+    sound                                                       
 }) {
 
 // Change mode
@@ -55,6 +51,7 @@ btnPlay.addEventListener('click', function(){
 btnStop.addEventListener('click', function(){
     timer.timerReset();
     sound.stopSound();
+    resetInputValues();
 })
 
 btnMore.addEventListener('click', function(){
@@ -99,6 +96,13 @@ inputMarket.addEventListener('input', function(){
 inputFire.addEventListener('input', function(){
     sound.setVolume(sound.forestAudio, inputFire);
 })
+
+function resetInputValues(){
+    inputForest.value = 0.5;
+    inputFire.value   = 0.5;
+    inputRain.value   = 0.5;
+    inputMarket.value = 0.5;
+}
     return {
 
     }

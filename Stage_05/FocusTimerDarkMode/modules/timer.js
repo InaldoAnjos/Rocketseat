@@ -1,11 +1,9 @@
-let idTimeout = null;
-
 export function Timer({
+    idTimeout,
     displayMinutes,
     displaySeconds,
     sound
 }){
-
     let minutes = Number(displayMinutes.textContent);
     let seconds = Number(displaySeconds.textContent);
 
@@ -27,7 +25,7 @@ export function Timer({
     function countdown() {
         idTimeout = setTimeout(function() {
             if(seconds <= 0){
-                seconds = 10;
+                seconds = 60;
                 if(minutes <=0 && seconds == 10) {
                     timerReset();
                     sound.stopSound();
@@ -40,7 +38,6 @@ export function Timer({
         }, 1000)
     }
 
-
     function updateTimerDisplay(minutes, seconds) {
         displayMinutes.textContent = String(minutes).padStart(2, '0');
         displaySeconds.textContent = String(seconds).padStart(2, '0');
@@ -48,7 +45,9 @@ export function Timer({
 
     function timerReset(){
         updateTimerDisplay(0,0);
+        clearTimeout(idTimeout);
         minutes = 0;
+        seconds = 0;                  
     }
 
     return {
@@ -57,5 +56,4 @@ export function Timer({
         timerReset,
         countdown
     }
-
 }
