@@ -26,7 +26,7 @@ export function Timer({
         idTimeout = setTimeout(function() {
             if(seconds <= 0){
                 seconds = 60;
-                if(minutes <=0 && seconds == 10) {
+                if(minutes <=0 && seconds == 60) {
                     timerReset();
                     sound.stopSound();
                     return;

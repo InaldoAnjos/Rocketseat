@@ -63,7 +63,7 @@ body {
     display: none;
 }
 
-.theme {
+main {
     background-color: var(--bg-color);
     display: grid;
     grid-template-areas: "time theme";
@@ -168,3 +168,12 @@ input[type="range"]:focus {
     height: 1.2rem;
     width: 1.2rem;
 }
+
+/* Media Query */
+
+@media screen and (max-width: 720px){
+    main {
+      display: flex;
+      flex-direction: column;
+    }
+  }
