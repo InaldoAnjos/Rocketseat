@@ -1,5 +1,7 @@
 import { elements } from "./modules/elements.js";
+import { Timer } from "./modules/timer.js";
 import { Sound } from "./modules/sounds.js";
+import { Events } from "./modules/events.js";
 
 const {
     tagHTML,
@@ -18,55 +20,17 @@ const {
     inputForest,
     inputRain,
     inputMarket,
-    inputFire
+    inputFire,
 } = elements;
 
 const sound = Sound();
 
-console.log(inputForest.value);
+Events({
+    sound
+});
 
-// Change mode
-
-lightTheme.addEventListener('click', function(){
-    tagHTML.classList.remove('light-mode');
-    tagHTML.classList.add('dark-mode');
-    lightTheme.classList.add('hide');
-    darkTheme.classList.remove('hide');
-})
-
-darkTheme.addEventListener('click', function(){
-    tagHTML.classList.remove('dark-mode');
-    tagHTML.classList.add('light-mode');
-    darkTheme.classList.add('hide');
-    lightTheme.classList.remove('hide');
-})
-
-// Sound
-
-cardForest.addEventListener('click', function(){
-    sound.stopSound();
-    sound.pressForest();
-})
-
-cardRain.addEventListener('click', function(){
-    sound.stopSound();
-    sound.pressRain();
-})
-
-cardMarket.addEventListener('click', function(){
-    sound.stopSound();
-    sound.pressMarket();
-})
-
-cardFire.addEventListener('click', function(){
-    sound.stopSound();
-    sound.pressFire();
-})
-
-btnStop.addEventListener('click', function(){
-    sound.stopSound();
-})
-
-// inputForest.addEventListener('mousemove', function(){
-
-// })
+const timer = Timer({
+    displayMinutes,
+    displaySeconds,
+    sound
+});

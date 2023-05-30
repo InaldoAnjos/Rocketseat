@@ -114,7 +114,8 @@ button {
     cursor: pointer;
 }
 
-button svg path {
+button svg path,
+.card svg path {
     fill: var(--bt-svg-color);
 }
 
