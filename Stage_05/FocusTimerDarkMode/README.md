@@ -3,8 +3,10 @@ Stage 05
 
 <p align="center">
     <img src="./github/preview.png" alt="Demonstração do projeto DarkMode" width="100%" />
-    <img src="./github/preview2.png" alt="Demonstração do projeto LightMode" width="100%" />
-</p> 
+</p>
+<p align="center">
+    <img src="./github/preview2.png" alt="Demonstração do projeto LightMode" width="100%" /> 
+</p>
 
 ## 🖥💻 Projeto
 Focus Timer é um projeto Web Responsivo de um gerenciador de tempo do tipo Pomodoro, com cronômetro e diversos sons de background, além de dois temas que podem ser definidas pelo usuário (Dark e Light Mode).
