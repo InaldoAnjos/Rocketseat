@@ -176,4 +176,8 @@ input[type="range"]:focus {
       display: flex;
       flex-direction: column;
     }
+    .mode {
+      top: 1rem;
+      right: 1rem;
+    }
   }
