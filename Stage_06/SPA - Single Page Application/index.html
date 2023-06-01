@@ -17,9 +17,31 @@
 
   </div>
   <script>
+
+    const routes = {
+    //propriedade //valor
+      "/":        "/pages/home.html",
+      "/about":   "/pages/about.html",
+      "/contact": "/pages/contact.html",
+      404:        "/pages/404.html",
+    }
+
     function route(event){
       event = event || window.event; //Verifica se foi passado um evento, caso contrário, pega o evento que está na janela
       event.preventDefault(); //Função utilizada para evitar o comportamento padrão de um evento em um elemento HTML
+
+      window.history.pushState({}, "", event.target.href);
+
+      handle();
+    }
+
+    function handle() {
+      // Método 1:
+      // const pathname = window.location.pathname;
+      // Método 2: Desestruturação de objeto
+      const { pathname } = window.location;
+
+      console.log(pathname);
     }
   </script>
 </body>
