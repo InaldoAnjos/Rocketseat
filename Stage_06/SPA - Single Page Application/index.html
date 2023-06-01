@@ -13,12 +13,13 @@
     <a href="/404"     onclick = "route()" >404</a>
   </nav>
 
-  <div id="app"></div>
+  <div id="app">
 
+  </div>
   <script>
-    function router(event){
+    function route(event){
       event = event || window.event; //Verifica se foi passado um evento, caso contrário, pega o evento que está na janela
-      event.preventDefault()
+      event.preventDefault(); //Função utilizada para evitar o comportamento padrão de um evento em um elemento HTML
     }
   </script>
 </body>
