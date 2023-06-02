@@ -2,14 +2,17 @@
 Stage 06
 
 <p align="center">
-    <img src=".github/preview.png" alt="Demonstração do projeto DarkMode" width="100%" />
+    <img src="./github/preview01.png" alt="Demonstração do projeto SPA Universe" width="100%" />
 </p>
 <p align="center">
-    <img src=".github/preview2.png" alt="Demonstração do projeto LightMode" width="100%" /> 
+    <img src="./github/preview01.png" alt="Demonstração do projeto SPA Universe" width="100%" /> 
+</p>
+<p align="center">
+    <img src="./github/preview01.png" alt="Demonstração do projeto SPA Universe" width="100%" /> 
 </p>
 
 ## 🖥💻 Projeto
-Focus Timer é um projeto Web Responsivo de um gerenciador de tempo do tipo Pomodoro, com cronômetro e diversos sons de background, além de dois temas que podem ser definidas pelo usuário (Dark e Light Mode).
+SPA Universe é um projeto Web Responsivo que põe em prática os conceitos de Single Page Application, mapeamento de rotas, manipulação de métodos da DOM, promises e método assíncrono do javascript, orientação a objetos, entre outros.
 
 ## 🚀 Tecnologias
 
@@ -20,5 +23,5 @@ Focus Timer é um projeto Web Responsivo de um gerenciador de tempo do tipo Pomo
 <img src=".github/javascript.svg" alt="Ícone do Javascript"> 
 
 ## 🏷 Layout
-Você pode visualizar o layout do projeto através desse [link](https://www.figma.com/file/YxWodNOUKPUWeie3ACFezq/Stage-05---Dark-Mode-FocusTimer-(Copy)?type=design&t=CgN8BT4qsqGqOkzW-0).
+Você pode visualizar o layout do projeto através desse [link](https://www.figma.com/file/M540vrqlovPk3VXneNdXtT/Desafios-Explorer-SPA-Universe-Copy?fuid=1093307177502148042).
 É necessário ter uma conta no [Figma](https://www.figma.com)
