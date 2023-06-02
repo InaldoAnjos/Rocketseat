@@ -52,3 +52,17 @@ body {
     color: var(--fc-texting);
     line-height: 2.9rem;
 }
+
+@media screen and (max-width: 800px){
+    .explore{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0 auto;
+    }
+    .explore p {
+        width: 80%;
+    }
+}

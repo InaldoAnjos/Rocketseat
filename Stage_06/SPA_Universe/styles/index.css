@@ -36,7 +36,7 @@ ul {
     gap: 3.2rem;
 }
 
-nav ul li a {
+.wrapper ul li a {
     font-size: var(--fs-nav);
     font-weight: 400;
     color: var(--fc-nav);
@@ -45,4 +45,112 @@ nav ul li a {
 li a:hover {
     font-weight: 700;
     color: var(--fc-nav-hover);
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+@media screen and (max-width: 800px){
+    .wrapper{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(-45deg, #012125 0%, #000000 100%);
+        transition: all 0.6s ease-in-out;
+      }
+      
+      #active:checked ~ .wrapper{
+        right:0;
+      }
+      .menu-btn{
+        position: absolute;
+        z-index: 2;
+        right: 2rem;
+        top: 2rem;
+        height: 5rem;
+        width: 5rem;
+        text-align: center;
+        line-height: 5rem;
+        border-radius: 50%;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+      .menu-btn span,
+      .menu-btn:before,
+      .menu-btn:after{
+        content: "";
+        position: absolute;
+        top: calc(50% - 1px);
+        left: 30%;
+        width: 40%;
+        border-bottom: 2px solid #FFF;
+        transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+      .menu-btn:before{
+        transform: translateY(-8px);
+      }
+      .menu-btn:after{
+        transform: translateY(8px);
+      }
+      
+      .close {
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transition: background .6s;
+      }
+      
+      /* closing animation */
+      #active:checked + .menu-btn span {
+        transform: scaleX(0);
+      }
+      #active:checked + .menu-btn:before {
+        transform: rotate(45deg);
+        border-color: #FFF;
+      }
+      #active:checked + .menu-btn:after {
+        transform: rotate(-45deg);
+        border-color: #FFF;
+      }
+      .wrapper ul{
+        flex-direction: column;
+        position: absolute;
+        top: 30%;
+        left: 35%;
+        height: 90%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        gap: 2rem;
+        justify-content: center;
+      }
+      .wrapper ul li a{
+        font-size: 2.4rem;
+        font-weight: 400;
+        color: #FFF;
+        line-height: 3rem;
+        opacity: 0;
+        transition: all 0.3s ease;
+        transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+      input[type="checkbox"]{
+        display: none;
+      }
+      #active:checked ~ .wrapper ul li a{
+        opacity: 1;
+      }
+      .wrapper ul li a{
+        transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        transform: translateX(100px);
+      }
+      #active:checked ~ .wrapper ul li a{
+        transform: none;
+        transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1); /* easeOutBackを緩めた感じ */
+        transition-delay: .6s;
+        transform: translateX(-100px);
+      }
 }
