@@ -2,13 +2,13 @@
 Stage 06
 
 <p align="center">
-    <img src="./github/preview01.png" alt="Demonstração do projeto SPA Universe" width="100%" />
+    <img src="./.github/preview01.png" alt="Demonstração do projeto SPA Universe" width="100%" />
 </p>
 <p align="center">
-    <img src="./github/preview01.png" alt="Demonstração do projeto SPA Universe" width="100%" /> 
+    <img src="./.github/preview02.png" alt="Demonstração do projeto SPA Universe" width="100%" /> 
 </p>
 <p align="center">
-    <img src="./github/preview01.png" alt="Demonstração do projeto SPA Universe" width="100%" /> 
+    <img src="./.github/preview03.png" alt="Demonstração do projeto SPA Universe" width="100%" /> 
 </p>
 
 ## 🖥💻 Projeto
