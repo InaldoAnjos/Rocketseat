@@ -8,6 +8,14 @@ export class Favorites {
     
     load() {
         this.entries = JSON.parse(localStorage.getItem('@github-favorites:')) || [];
+
+        if(this.entries.length == 0) {
+            document.querySelector('.empty-list').classList.remove('hide');
+            document.querySelector('tbody').classList.add('hide');
+        }else {
+            document.querySelector('tbody').classList.remove('hide');
+            document.querySelector('.empty-list').classList.add('hide');
+        }
     }
     
     save() {
@@ -31,6 +39,7 @@ export class Favorites {
             this.entries = [user, ...this.entries]
             this.update()
             this.save()
+            this.load()
         } catch(error) {
             alert(error.message)
         }
@@ -42,6 +51,7 @@ export class Favorites {
         this.entries = filteredEntries;
         this.update();
         this.save();
+        this.load();
     }
 }
 
@@ -53,21 +63,6 @@ export class FavoritesView extends Favorites {
         
         this.update();
         this.onadd();
-    }
-
-    isEmpty() {
-        const countRows = this.entries = JSON.parse(localStorage.getItem('@github-favorites:'));
-        console.log(countRows.length)
-
-        if(countRows.length === 0) {
-            console.log(`entrei aqui`)
-            document.querySelector('.empty-list').classList.remove('hide');
-            document.querySelector('tbody').classList.add('hide');
-        }else {
-            console.log(`entrei no else aqui`)
-            document.querySelector('tbody').classList.remove('hide');
-            document.querySelector('.empty-list').classList.add('hide');
-        }
     }
     
     onadd() {

@@ -191,6 +191,7 @@ tbody tr:nth-child(odd) {
 
 tbody tr:nth-child(even) {
     background-color: var(--table-row-even-color);
+    border-bottom: 1px solid var(--table-border-color);
 }
 
 .empty-list {
