@@ -128,6 +128,8 @@ header {
 table {
     width: 100%;
     border-collapse: collapse;
+    border-radius: 1.2rem;
+    overflow: hidden;
 }
 
 thead tr {
@@ -185,13 +187,13 @@ tbody td:first-child {
 }
 
 tbody tr:nth-child(odd) {
-    border-bottom: 1px solid var(--table-border-color);
+    border-top: 1px solid var(--table-border-color);
     background-color: var(--table-row-odd-color);
 }
 
 tbody tr:nth-child(even) {
     background-color: var(--table-row-even-color);
-    border-bottom: 1px solid var(--table-border-color);
+    border-top: 1px solid var(--table-border-color);
 }
 
 .empty-list {
